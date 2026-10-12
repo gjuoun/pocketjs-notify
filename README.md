@@ -3,7 +3,7 @@
 JG-122 experiment: a minimal **server-pushes-notification → PocketJS app answers YES/NO → answer recorded** loop, fully local (browser dev host, no real device).
 
 - `server/` — Bun + Hono notify server (port **8899**)
-- `app/` — PocketJS Solid app (`notify-main.tsx` mount entry + `app.tsx` UI), built through the untouched PocketJS clone at `~/.notebook/workspace/pocketjs`
+- `app/` — PocketJS Solid app (`notify-main.tsx` mount entry + `app.tsx` UI), built through the untouched PocketJS clone at `~/code/pocket-nexus/pocketjs`
 - `validation/` — E2E screenshots
 
 ## Run
@@ -11,7 +11,7 @@ JG-122 experiment: a minimal **server-pushes-notification → PocketJS app answe
 Prerequisites: bun, Chrome. One-time setup in the PocketJS clone:
 
 ```bash
-cd ~/.notebook/workspace/pocketjs
+cd ~/code/pocket-nexus/pocketjs
 bun install                          # repo deps for tools/build.ts
 bun tools/wasm.ts                    # engine/wasm -> hosts/web/pocketjs.wasm (rustup target add wasm32-unknown-unknown if missing)
 ```
@@ -19,15 +19,15 @@ bun tools/wasm.ts                    # engine/wasm -> hosts/web/pocketjs.wasm (r
 Build the app bundle (output lands in the clone's `dist/`, which the dev host serves):
 
 ```bash
-cd ~/.notebook/workspace/pocketjs-notify
-bun ~/.notebook/workspace/pocketjs/tools/build.ts app/notify-main.tsx
+cd ~/code/gjuoun/pocketjs-notify
+bun ~/code/pocket-nexus/pocketjs/tools/build.ts app/notify-main.tsx
 ```
 
 Start both ends:
 
 ```bash
-cd ~/.notebook/workspace/pocketjs-notify/server && bun run src/server.ts   # :8899
-cd ~/.notebook/workspace/pocketjs && bun hosts/web/serve.ts                # :8130
+cd ~/code/gjuoun/pocketjs-notify/server && bun run src/server.ts   # :8899
+cd ~/code/pocket-nexus/pocketjs && bun hosts/web/serve.ts                # :8130
 ```
 
 Open the app (portrait phone viewport via host query params):
